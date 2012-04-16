@@ -11,6 +11,10 @@ public class VenueSearchParams {
 
     private Double latitude;
     private Double longitude;
+    private Double neLatitude;
+    private Double neLongitude;
+    private Double swLatitude;
+    private Double swLongitude;
     private Double locationAccuracy;
     private Double altitude;
     private Double altitudeAccuracy;
@@ -72,6 +76,20 @@ public class VenueSearchParams {
         this.longitude = longitude;
         return this;
     }
+    
+    public VenueSearchParams ne(Double latitude, Double longitude) {
+    	this.neLatitude = latitude;
+        this.neLongitude = longitude;
+        return this;
+    }
+    
+    
+    public VenueSearchParams sw(Double latitude, Double longitude) {
+        this.swLatitude = latitude;
+        this.swLongitude = longitude;
+        return this;
+    }
+    
 
     public Double getLocationAccuracy() {
         return locationAccuracy;
@@ -99,7 +117,7 @@ public class VenueSearchParams {
         this.altitudeAccuracy = altitudeAccuracy;
         return this;
     }
-
+    
     public String getQuery() {
         return query;
     }
@@ -136,6 +154,11 @@ public class VenueSearchParams {
         Map<String, String> params = new HashMap<String, String>();
         if (latitude != null && longitude != null) {
             params.put("ll", latitude.toString() + "," + longitude.toString());
+        }
+        
+        if (neLatitude != null && neLongitude != null && swLatitude != null && swLongitude != null) {
+            params.put("ne", neLatitude.toString() + "," + neLatitude.toString());
+            params.put("sw", swLatitude.toString() + "," + swLatitude.toString());
         }
         if (locationAccuracy != null) {
             params.put("llAcc", locationAccuracy.toString());
