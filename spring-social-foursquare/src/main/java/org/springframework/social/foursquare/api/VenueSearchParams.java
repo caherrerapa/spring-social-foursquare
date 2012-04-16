@@ -16,6 +16,7 @@ public class VenueSearchParams {
     private Double altitudeAccuracy;
     private String query;
     private Integer limit;
+    private Integer radius;
     private Intent intent;
     private String categoryId;
     private String url;
@@ -116,6 +117,11 @@ public class VenueSearchParams {
         this.limit = limit;
         return this;
     }
+    
+    public VenueSearchParams radius(Integer radius){
+    	this.radius = radius;
+    	return this;
+    }
 
     public Intent getBasis() {
         return intent;
@@ -145,6 +151,9 @@ public class VenueSearchParams {
         }
         if (limit != null) {
             params.put("limit", limit.toString());
+        }
+        if (radius != null) {
+            params.put("radius", radius.toString());
         }
         if (intent != null) {
             params.put("intent", intent.toString().toLowerCase());
